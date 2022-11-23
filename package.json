@@ -1,0 +1,16 @@
+{
+  "name": "sulky-children-cry-bki8t",
+  "productName": "sulky-children-cry-bki8t",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "jeandre",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^18.3.0"
+  }
+}
