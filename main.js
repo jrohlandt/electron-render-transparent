@@ -17,7 +17,7 @@ function createMainWindow() {
 
 function createSecondaryWindow() {
   secondaryWindow = new BrowserWindow({
-    webPreferences: { offscreen: false },
+    webPreferences: { offscreen: true },
     frame: false,
     transparent: true,
   });
