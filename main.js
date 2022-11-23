@@ -9,15 +9,28 @@ let secondaryWindow;
 
 function createMainWindow() {
   mainWindow = new BrowserWindow({
-    fullscreen: true,
+    show: false,
+    maximizable: true,
   });
   mainWindow.loadFile("./index.html");
   mainWindow.webContents.setFrameRate(60);
+
+  mainWindow.once("ready-to-show", () => {
+    mainWindow.show();
+    mainWindow.maximize();
+    mainWindow.webContents.openDevTools();
+  });
 }
 
 function createSecondaryWindow() {
+  let offscreen = true;
+  // offscreen = false;
   secondaryWindow = new BrowserWindow({
-    webPreferences: { offscreen: true },
+    parent: mainWindow,
+    width: 1280,
+    height: 720,
+    show: !offscreen,
+    webPreferences: { offscreen },
     frame: false,
     transparent: true,
   });
@@ -30,7 +43,7 @@ app.whenReady().then(() => {
   createSecondaryWindow();
 
   secondaryWindow.webContents.on("paint", (event, dirty, image) => {
-    fs.writeFileSync("ex.png", image.toPNG());
+    fs.writeFileSync("out/ex.png", image.toPNG());
   });
 
   console.log(
